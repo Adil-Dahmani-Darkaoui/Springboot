@@ -14,6 +14,8 @@ public class CharacterDaoImpl implements CharacterDao {
     static {
         characters.add(new Character(1, new String("Gandalf"), new String("Mage")));
         characters.add(new Character(2, new String("Aragorn"), new String("Warrior")));
+        characters.add(new Character(2, new String("Sarouman"), new String("Mage")));
+        characters.add(new Character(2, new String("Boromir"), new String("Warrior")));
     }
 
     @Override

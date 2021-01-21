@@ -1,7 +1,6 @@
 package com.webapp.microservice.dao;
 
 import com.webapp.microservice.model.Character;
-import net.bytebuddy.description.type.TypeList;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -12,13 +11,6 @@ import java.util.List;
 public class CharacterDaoImpl implements CharacterDao {
 
     public static List<Character> characters = new ArrayList<>();
-
-//    static {
-//        characters.add(new Character(1, new String("Gandalf"), new String("Mage")));
-//        characters.add(new Character(2, new String("Aragorn"), new String("Warrior")));
-//        characters.add(new Character(3, new String("Sarouman"), new String("Mage")));
-//        characters.add(new Character(4, new String("Boromir"), new String("Warrior")));
-//    }
 
     @Override
     public List<Character> findAll() {

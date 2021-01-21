@@ -1,8 +1,10 @@
 package com.webapp.microservice.dao;
 
 import com.webapp.microservice.model.Character;
+import net.bytebuddy.description.type.TypeList;
 import org.springframework.stereotype.Repository;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,16 +13,32 @@ public class CharacterDaoImpl implements CharacterDao {
 
     public static List<Character> characters = new ArrayList<>();
 
-    static {
-        characters.add(new Character(1, new String("Gandalf"), new String("Mage")));
-        characters.add(new Character(2, new String("Aragorn"), new String("Warrior")));
-        characters.add(new Character(2, new String("Sarouman"), new String("Mage")));
-        characters.add(new Character(2, new String("Boromir"), new String("Warrior")));
-    }
+//    static {
+//        characters.add(new Character(1, new String("Gandalf"), new String("Mage")));
+//        characters.add(new Character(2, new String("Aragorn"), new String("Warrior")));
+//        characters.add(new Character(3, new String("Sarouman"), new String("Mage")));
+//        characters.add(new Character(4, new String("Boromir"), new String("Warrior")));
+//    }
 
     @Override
     public List<Character> findAll() {
-        return characters;
+        ArrayList<Character> characterList = new ArrayList<>();
+        try {
+            Connection con = JDBCConnection.getInstance();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from personnages");
+
+            while (rs.next()) {
+                Character character = new Character(rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("type"));
+                characterList.add(character);
+            }
+
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+        return characterList;
     }
 
     @Override
@@ -46,7 +64,7 @@ public class CharacterDaoImpl implements CharacterDao {
         for (Character updateCharacter : characters) {
             if (updateCharacter.getId() == id) {
                 updateCharacter.setId(character.getId());
-                updateCharacter.setNom(character.getNom());
+                updateCharacter.setName(character.getName());
                 updateCharacter.setType(character.getType());
                 return;
             }

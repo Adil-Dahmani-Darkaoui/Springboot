@@ -3,15 +3,15 @@ package com.webapp.microservice.model;
 public class Character {
 
     private int id;
-    private String nom;
+    private String name;
     private String type;
 
     public Character() {
     }
 
-    public Character(int id, String nom, String type) {
+    public Character(int id, String name, String type) {
         this.id = id;
-        this.nom = nom;
+        this.name = name;
         this.type = type;
     }
 
@@ -23,12 +23,12 @@ public class Character {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getName() {
+        return name;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getType() {
@@ -43,7 +43,7 @@ public class Character {
     public String toString() {
         return "Character{" +
                 "id=" + id +
-                ", nom='" + nom + '\'' +
+                ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 '}';
     }

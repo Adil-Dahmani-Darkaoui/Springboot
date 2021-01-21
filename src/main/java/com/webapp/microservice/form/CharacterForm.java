@@ -3,7 +3,7 @@ package com.webapp.microservice.form;
 public class CharacterForm {
 
     private int id;
-    private String nom;
+    private String name;
     private String type;
 
     public int getId() {
@@ -14,12 +14,12 @@ public class CharacterForm {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getName() {
+        return name;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getType() {

@@ -34,15 +34,35 @@ public class CharacterDaoImpl implements CharacterDao {
     }
 
     @Override
-    public Character findById(int id) {
+    public Character findById(int id){
+        Character character = new Character();
+        try {
+            Connection con = JDBCConnection.getInstance();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from personnages where id ="+id);
 
-        for (Character character : characters) {
-            if (character.getId() == id) {
-                return character;
+            while (rs.next()) {
+                character.setId(rs.getInt("id"));
+                character.setName(rs.getString("name"));
+                character.setType(rs.getString("type"));
             }
+
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
         }
-        return null;
+        return character;
     }
+
+//    @Override
+//    public Character findById(int id) {
+//
+//        for (Character character : characters) {
+//            if (character.getId() == id) {
+//                return character;
+//            }
+//        }
+//        return null;
+//    }
 
     @Override
     public void save(Character character) {

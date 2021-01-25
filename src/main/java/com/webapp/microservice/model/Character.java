@@ -1,7 +1,13 @@
 package com.webapp.microservice.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="personnages")
 public class Character {
 
+    @Id
+    @GeneratedValue
     private int id;
     private String name;
     private String type;
